@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas Git: GitHub, GitLab & Bitbucket</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .platform-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .platform-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #eee;
+        }
+
+        .platform-logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+        }
+
+        .github { background: linear-gradient(135deg, #333, #24292e); }
+        .gitlab { background: linear-gradient(135deg, #fc6d26, #e24329); }
+        .bitbucket { background: linear-gradient(135deg, #0052cc, #2684ff); }
+
+        .platform-name {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .platform-tagline {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .features-list {
+            margin: 20px 0;
+        }
+
+        .features-list h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list ul {
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .features-list li:hover {
+            padding-left: 30px;
+            color: #555;
+        }
+
+        .pricing {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .pricing h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .comparison-table h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        .footer {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Plataformas Git</h1>
+            <p>Comparativa completa de GitHub, GitLab y Bitbucket</p>
+        </header>
+
+        <div class="platforms-grid">
+            <!-- GitHub -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <div class="platform-logo github">🐙</div>
+                    <div>
+                        <div class="platform-name">GitHub</div>
+                        <div class="platform-tagline">"Donde el mundo construye software"</div>
+                    </div>
+                </div>
+
+                <div class="features-list">
+                    <h3><span class="emoji">⭐</span>Características Principales</h3>
+                    <ul>
+                        <li>Repositorios públicos y privados ilimitados</li>
+                        <li>GitHub Actions para CI/CD</li>
+                        <li>GitHub Pages para hosting estático</li>
+                        <li>Issues y Projects para gestión</li>
+                        <li>GitHub Copilot (IA para programar)</li>
+                        <li>Comunidad más grande del mundo</li>
+                        <li>Integración con miles de herramientas</li>
+                        <li>GitHub Codespaces (desarrollo en la nube)</li>
+                    </ul>
+                </div>
+
+                <div class="pricing">
+                    <h3><span class="emoji">💰</span>Planes de Precios</h3>
+                    <p><strong>Free:</strong> Repositorios ilimitados, 2,000 minutos CI/CD</p>
+                    <p><strong>Pro ($4/mes):</strong> Herramientas avanzadas, estadísticas</p>
+                    <p><strong>Team ($4/usuario/mes):</strong> Colaboración en equipo</p>
+                </div>
+            </div>
+
+            <!-- GitLab -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <div class="platform-logo gitlab">🦊</div>
+                    <div>
+                        <div class="platform-name">GitLab</div>
+                        <div class="platform-tagline">"DevOps completo en una plataforma"</div>
+                    </div>
+                </div>
+
+                <div class="features-list">
+                    <h3><span class="emoji">🛠️</span>Características Principales</h3>
+                    <ul>
+                        <li>Plataforma DevOps completa integrada</li>
+                        <li>CI/CD nativo robusto</li>
+                        <li>Gestión de issues y merge requests</li>
+                        <li>Container Registry incluido</li>
+                        <li>Security scanning automático</li>
+                        <li>GitLab Pages gratuito</li>
+                        <li>Opción self-hosted disponible</li>
+                        <li>Wiki y documentación integrada</li>
+                    </ul>
+                </div>
+
+                <div class="pricing">
+                    <h3><span class="emoji">💰</span>Planes de Precios</h3>
+                    <p><strong>Free:</strong> Repositorios ilimitados, 400 minutos CI/CD</p>
+                    <p><strong>Premium ($19/usuario/mes):</strong> Herramientas avanzadas</p>
+                    <p><strong>Ultimate ($99/usuario/mes):</strong> Security y compliance</p>
+                </div>
+            </div>
+
+            <!-- Bitbucket -->
+            <div class="platform-card">
+                <div class="platform-header">
+                    <div class="platform-logo bitbucket">🪣</div>
+                    <div>
+                        <div class="platform-name">Bitbucket</div>
+                        <div class="platform-tagline">"Git perfecto para equipos Atlassian"</div>
+                    </div>
+                </div>
+
+                <div class="features-list">
+                    <h3><span class="emoji">🔧</span>Características Principales</h3>
+                    <ul>
+                        <li>Integración perfecta con Atlassian (Jira, Confluence)</li>
+                        <li>Bitbucket Pipelines para CI/CD</li>
+                        <li>Pull requests y code review</li>
+                        <li>Branch permissions granulares</li>
+                        <li>Smart Mirroring para sincronización</li>
+                        <li>IP whitelisting para seguridad</li>
+                        <li>Deployment environments</li>
+                        <li>Built-in issue tracking</li>
+                    </ul>
+                </div>
+
+                <div class="pricing">
+                    <h3><span class="emoji">💰</span>Planes de Precios</h3>
+                    <p><strong>Free:</strong> 5 usuarios, repositorios privados ilimitados</p>
+                    <p><strong>Standard ($3/usuario/mes):</strong> Usuarios ilimitados</p>
+                    <p><strong>Premium ($6/usuario/mes):</strong> Deployment y IP whitelisting</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h2><span class="emoji">📊</span>Comparativa Detallada</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>GitHub</th>
+                        <th>GitLab</th>
+                        <th>Bitbucket</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Repositorios privados gratuitos</strong></td>
+                        <td>✅ Ilimitados</td>
+                        <td>✅ Ilimitados</td>
+                        <td>✅ Ilimitados</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Colaboradores en plan gratuito</strong></td>
+                        <td>✅ Ilimitados</td>
+                        <td>✅ Ilimitados</td>
+                        <td>⚠️ Hasta 5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CI/CD incluido</strong></td>
+                        <td>✅ GitHub Actions</td>
+                        <td>✅ GitLab CI/CD</td>
+                        <td>✅ Bitbucket Pipelines</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hosting estático</strong></td>
+                        <td>✅ GitHub Pages</td>
+                        <td>✅ GitLab Pages</td>
+                        <td>❌ No disponible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Self-hosting</strong></td>
+                        <td>❌ Solo Enterprise</td>
+                        <td>✅ GitLab CE/EE</td>
+                        <td>✅ Bitbucket Server</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Container Registry</strong></td>
+                        <td>✅ GitHub Packages</td>
+                        <td>✅ Incluido</td>
+                        <td>⚠️ Solo en Premium</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comunidad más grande</strong></td>
+                        <td>✅ 100M+ usuarios</td>
+                        <td>⚠️ Creciendo rápido</td>
+                        <td>⚠️ Menor comunidad</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integración Atlassian</strong></td>
+                        <td>⚠️ Limitada</td>
+                        <td>⚠️ Terceros</td>
+                        <td>✅ Nativa y completa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <h2><span class="emoji">🎯</span>¿Cuál Elegir?</h2>
+            <p><strong>Elige GitHub si:</strong> Quieres la comunidad más grande, muchas integraciones y simplicidad</p>
+            <p><strong>Elige GitLab si:</strong> Necesitas DevOps completo, self-hosting o CI/CD robusto</p>
+            <p><strong>Elige Bitbucket si:</strong> Ya usas herramientas Atlassian o necesitas permisos granulares</p>
+
+            <div style="margin-top: 30px;">
+                <a href="https://github.com" class="btn-link" target="_blank">Visitar GitHub</a>
+                <a href="https://gitlab.com" class="btn-link" target="_blank">Visitar GitLab</a>
+                <a href="https://bitbucket.org" class="btn-link" target="_blank">Visitar Bitbucket</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animación suave al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.platform-card');
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'all 0.6s ease-out';
+                observer.observe(card);
+            });
+        });
+
+        // Efecto de hover en la tabla
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#f0f0f0';
+                this.style.transform = 'scale(1.01)';
+            });
+
+            row.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '';
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
